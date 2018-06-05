@@ -3,7 +3,8 @@
   "schematics": {
     "spec": {
       "description": "Creates a spec",
-      "factory": "./spec/index"
+      "factory": "./spec/index",
+      "schema": "./spec/schema.json"
     }
   }
 }

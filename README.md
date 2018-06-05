@@ -5,7 +5,7 @@ A missing schematic for creating Angular spec.
 ## Installation
 
 ```sh
-ng add ngx-spec
+npm i -D ngx-spec
 ```
 
 ## Usage

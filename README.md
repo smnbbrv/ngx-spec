@@ -19,13 +19,13 @@ const supportedTypes = ['component', 'directive', 'guard', 'service', 'pipe', 'm
 Run:
 
 ```sh
-ng g spec ngx-spec:spec path/my.service
+ng g ngx-spec:spec path/my.service
 ```
 
 or
 
 ```sh
-ng g spec ngx-spec:spec path/my.service.ts
+ng g ngx-spec:spec path/my.service.ts
 ```
 
 ## History

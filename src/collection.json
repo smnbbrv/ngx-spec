@@ -1,0 +1,9 @@
+{
+  "$schema": "./node_modules/@angular-devkit/schematics/collection-schema.json",
+  "schematics": {
+    "spec": {
+      "description": "Creates a spec",
+      "factory": "./spec/index"
+    }
+  }
+}

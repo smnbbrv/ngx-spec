@@ -1,0 +1,31 @@
+{
+  "name": "ngx-spec",
+  "version": "0.1.0",
+  "description": "A missing schematics for creating missing / recreating Angular 6+ specs",
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "test": "npm run build && jasmine src/**/*.spec.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/smnbbrv/ngx-spec.git"
+  },
+  "keywords": [
+    "angular",
+    "spec",
+    "cli",
+    "schematics"
+  ],
+  "author": "smnbbrv",
+  "license": "MIT",
+  "schematics": "./src/collection.json",
+  "dependencies": {
+    "@angular-devkit/core": "^0.7.0-beta.1",
+    "@angular-devkit/schematics": "^0.7.0-beta.1",
+    "@schematics/angular": ">=0.7.0-beta.1",
+    "@types/jasmine": "^2.6.0",
+    "@types/node": "^8.0.31",
+    "jasmine": "^2.8.0",
+    "typescript": "^2.5.2"
+  }
+}

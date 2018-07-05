@@ -3,6 +3,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const core_1 = require("@angular-devkit/core");
 const schematics_1 = require("@angular-devkit/schematics");
 const core_2 = require("@angular-devkit/core");
+const nodePath = require("path");
 const supportedTypes = ['component', 'directive', 'guard', 'service', 'pipe', 'module'];
 function getWorkspacePath(host) {
     const possibleFiles = ['/angular.json', '/.angular.json'];
@@ -56,7 +57,8 @@ function default_1(options) {
         options.name = name;
         options.path = parsedPath.path;
         const schematicsPath = require.resolve(`@schematics/angular/${type}/index.js`).replace(/index\.js$/, 'files');
-        const templateSource = schematics_1.apply(schematics_1.url(schematicsPath), [
+        console.log(nodePath.relative(__dirname, schematicsPath));
+        const templateSource = schematics_1.apply(schematics_1.url(nodePath.relative(__dirname, schematicsPath)), [
             schematics_1.filter(path => path.endsWith('.spec.ts')),
             schematics_1.template(Object.assign({}, core_1.strings, { 'if-flat': () => '' }, options)),
             schematics_1.move(parsedPath.path),

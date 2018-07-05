@@ -14,6 +14,7 @@ import {
 import { Schema as Options } from './schema';
 import { Path, basename, dirname, normalize } from '@angular-devkit/core';
 import { WorkspaceSchema } from '@angular-devkit/core/src/workspace';
+import * as nodePath from 'path';
 
 const supportedTypes = ['component', 'directive', 'guard', 'service', 'pipe', 'module'];
 
@@ -91,7 +92,10 @@ export default function (options: Options): Rule {
 
     const schematicsPath = require.resolve(`@schematics/angular/${type}/index.js`).replace(/index\.js$/, 'files');
 
-    const templateSource = apply(url(schematicsPath), [
+    // important for windows to get the relative path, otherwise schematics becomes crazy when sees C:\bla\bla things
+    const relativeSchematicsPath = nodePath.relative(__dirname, schematicsPath);
+
+    const templateSource = apply(url(relativeSchematicsPath), [
       filter(path => path.endsWith('.spec.ts')),
       template({
         ...strings,

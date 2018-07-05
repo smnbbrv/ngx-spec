@@ -57,8 +57,9 @@ function default_1(options) {
         options.name = name;
         options.path = parsedPath.path;
         const schematicsPath = require.resolve(`@schematics/angular/${type}/index.js`).replace(/index\.js$/, 'files');
-        console.log(nodePath.relative(__dirname, schematicsPath));
-        const templateSource = schematics_1.apply(schematics_1.url(nodePath.relative(__dirname, schematicsPath)), [
+        // important for windows to get the relative path, otherwise schematics becomes crazy when sees C:\bla\bla things
+        const relativeSchematicsPath = nodePath.relative(__dirname, schematicsPath);
+        const templateSource = schematics_1.apply(schematics_1.url(relativeSchematicsPath), [
             schematics_1.filter(path => path.endsWith('.spec.ts')),
             schematics_1.template(Object.assign({}, core_1.strings, { 'if-flat': () => '' }, options)),
             schematics_1.move(parsedPath.path),

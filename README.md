@@ -2,6 +2,8 @@
 
 A missing schematic for creating Angular spec.
 
+Works only from @angular/cli@^6.0.0 on.
+
 ## Installation
 
 ```sh

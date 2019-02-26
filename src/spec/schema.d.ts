@@ -11,4 +11,8 @@ export interface Schema {
      * The name of the project.
      */
     project?: string;
+    /**
+     * Whether to force
+     */
+    ignoreTargetNotFound?: boolean;
 }

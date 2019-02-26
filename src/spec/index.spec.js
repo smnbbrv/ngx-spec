@@ -96,5 +96,21 @@ describe('Spec Schematic', () => {
             thisSchematicRunner.runSchematic('spec', Object.assign({}, defaultOptions, { name: 'foo/foo.abc' }), appTree);
         }).toThrow();
     });
+    it('should throw when target file is not found', () => {
+        expect(() => {
+            thisSchematicRunner.runSchematic('spec', Object.assign({}, defaultOptions, { name: 'foo/foo.service' }), appTree);
+        }).toThrow();
+        expect(() => {
+            thisSchematicRunner.runSchematic('spec', Object.assign({}, defaultOptions, { name: 'foo/foo.service.ts' }), appTree);
+        }).toThrow();
+    });
+    it('should throw when target file is not found and ignoreTargetNotFound is true', () => {
+        expect(() => {
+            thisSchematicRunner.runSchematic('spec', Object.assign({}, defaultOptions, { name: 'foo/foo.service', ignoreTargetNotFound: true }), appTree);
+        }).not.toThrow();
+        expect(() => {
+            thisSchematicRunner.runSchematic('spec', Object.assign({}, defaultOptions, { name: 'foo/foo.service.ts', ignoreTargetNotFound: true }), appTree);
+        }).not.toThrow();
+    });
 });
 //# sourceMappingURL=index.spec.js.map

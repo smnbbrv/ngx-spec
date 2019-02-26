@@ -2,6 +2,8 @@
 
 A missing schematic for creating Angular spec.
 
+Works only from @angular/cli@^6.0.0 on.
+
 ## Installation
 
 ```sh
@@ -30,6 +32,8 @@ or
 ```sh
 ng g ngx-spec:spec path/my.service.ts
 ```
+
+> Please note that in a standard Angular CLI project the path will start at `src/app`. That's why if you use the file paths then it would be comfortable to `cd src/app` first and then safely use the shell autocompletion to produce the proper path.
 
 ## History
 

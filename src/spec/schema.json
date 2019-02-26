@@ -24,6 +24,10 @@
       "$default": {
         "$source": "projectName"
       }
+    },
+    "ignoreTargetNotFound": {
+      "type": "boolean",
+      "description": "The directive to force creating the spec when the target file is not present."
     }
   },
   "required": []

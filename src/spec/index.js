@@ -56,6 +56,10 @@ function default_1(options) {
         options.name = name;
         options.path = parsedPath.path;
         const schematicsPath = require.resolve(`@schematics/angular/${type}/index.js`).replace(/index\.js$/, 'files');
+        const targetPath = `${parsedPath.path}/${name}.${type}.ts`;
+        if (!host.exists(targetPath) && !options.ignoreTargetNotFound) {
+            throw new schematics_1.SchematicsException(`Target file ${targetPath} is not existing`);
+        }
         // important for windows to get the relative path, otherwise schematics becomes crazy when sees C:\bla\bla things
         const relativeSchematicsPath = nodePath.relative(__dirname, schematicsPath);
         const templateSource = schematics_1.apply(schematics_1.url(relativeSchematicsPath), [

@@ -41,28 +41,19 @@ describe('Spec Schematic', () => {
     appTree = schematicRunner.runSchematic('application', appOptions, appTree);
   });
 
-  it('should create a spec for module', () => {
-    testCreatedSpec('module', {
-      name: 'foo',
-      spec: false,
-      flat: false,
-      project: 'bar',
-    });
-  });
-
   function testCreatedSpec(schematic: string, targetOptions: { [prop: string]: string | boolean }) {
     const options = { ...defaultOptions, name: 'foo/foo.' + schematic };
     let tree = schematicRunner.runSchematic(schematic, targetOptions, appTree);
 
-    expect(tree.files.includes(`/projects/bar/src/app/foo/foo.${ schematic }.spec.ts`)).toBeFalsy();
-    expect(tree.files.includes(`/projects/bar/src/app/foo/foo.${ schematic }.ts`)).toBeTruthy();
+    expect(tree.files.includes(`/projects/bar/src/app/foo/foo.${schematic}.spec.ts`)).toBeFalsy();
+    expect(tree.files.includes(`/projects/bar/src/app/foo/foo.${schematic}.ts`)).toBeTruthy();
 
     tree = thisSchematicRunner.runSchematic('spec', options, tree);
 
     const files = tree.files;
 
-    expect(files.includes(`/projects/bar/src/app/foo/foo.${ schematic }.spec.ts`)).toBeTruthy();
-    expect(files.includes(`/projects/bar/src/app/foo/foo.${ schematic }.ts`)).toBeTruthy();
+    expect(files.includes(`/projects/bar/src/app/foo/foo.${schematic}.spec.ts`)).toBeTruthy();
+    expect(files.includes(`/projects/bar/src/app/foo/foo.${schematic}.ts`)).toBeTruthy();
   }
 
   it('should create a spec for component', () => {
@@ -100,7 +91,7 @@ describe('Spec Schematic', () => {
 
   it('should create a spec for guard', () => {
     testCreatedSpec('guard', {
-      name: 'foo/foo', // foo folder here because guard flat parameter is ignored...
+      name: 'foo',
       spec: false,
       flat: false,
       project: 'bar',

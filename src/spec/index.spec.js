@@ -28,14 +28,6 @@ describe('Spec Schematic', () => {
         appTree = schematicRunner.runSchematic('workspace', workspaceOptions);
         appTree = schematicRunner.runSchematic('application', appOptions, appTree);
     });
-    it('should create a spec for module', () => {
-        testCreatedSpec('module', {
-            name: 'foo',
-            spec: false,
-            flat: false,
-            project: 'bar',
-        });
-    });
     function testCreatedSpec(schematic, targetOptions) {
         const options = Object.assign({}, defaultOptions, { name: 'foo/foo.' + schematic });
         let tree = schematicRunner.runSchematic(schematic, targetOptions, appTree);
@@ -78,7 +70,7 @@ describe('Spec Schematic', () => {
     });
     it('should create a spec for guard', () => {
         testCreatedSpec('guard', {
-            name: 'foo/foo',
+            name: 'foo',
             spec: false,
             flat: false,
             project: 'bar',

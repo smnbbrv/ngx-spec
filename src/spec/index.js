@@ -2,9 +2,8 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const core_1 = require("@angular-devkit/core");
 const schematics_1 = require("@angular-devkit/schematics");
-const core_2 = require("@angular-devkit/core");
 const nodePath = require("path");
-const supportedTypes = ['component', 'directive', 'guard', 'service', 'pipe', 'module'];
+const supportedTypes = ['component', 'directive', 'guard', 'service', 'pipe'];
 function getWorkspacePath(host) {
     const possibleFiles = ['/angular.json', '/.angular.json'];
     const path = possibleFiles.filter(path => host.exists(path))[0];
@@ -22,11 +21,11 @@ function getWorkspace(host) {
 }
 exports.getWorkspace = getWorkspace;
 function parseName(path, name) {
-    const nameWithoutPath = core_2.basename(name);
-    const namePath = core_2.dirname((path + '/' + name));
+    const nameWithoutPath = core_1.basename(name);
+    const namePath = core_1.dirname((path + '/' + name));
     return {
         name: nameWithoutPath,
-        path: core_2.normalize('/' + namePath),
+        path: core_1.normalize('/' + namePath),
     };
 }
 function default_1(options) {
@@ -60,8 +59,8 @@ function default_1(options) {
         // important for windows to get the relative path, otherwise schematics becomes crazy when sees C:\bla\bla things
         const relativeSchematicsPath = nodePath.relative(__dirname, schematicsPath);
         const templateSource = schematics_1.apply(schematics_1.url(relativeSchematicsPath), [
-            schematics_1.filter(path => path.endsWith('.spec.ts')),
-            schematics_1.template(Object.assign({}, core_1.strings, { 'if-flat': () => '' }, options)),
+            schematics_1.filter(path => path.endsWith('.spec.ts.template')),
+            schematics_1.applyTemplates(Object.assign({}, core_1.strings, { 'if-flat': () => '' }, options)),
             schematics_1.move(parsedPath.path),
         ]);
         return schematics_1.mergeWith(templateSource)(host, context);

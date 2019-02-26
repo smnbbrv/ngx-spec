@@ -1,25 +1,13 @@
-import { strings } from '@angular-devkit/core';
-import {
-  Rule,
-  SchematicContext,
-  SchematicsException,
-  Tree,
-  apply,
-  filter,
-  mergeWith,
-  move,
-  template,
-  url,
-} from '@angular-devkit/schematics';
-import { Schema as Options } from './schema';
-import { Path, basename, dirname, normalize } from '@angular-devkit/core';
+import { basename, dirname, normalize, Path, strings } from '@angular-devkit/core';
 import { WorkspaceSchema } from '@angular-devkit/core/src/workspace';
+import { apply, applyTemplates, filter, mergeWith, move, Rule, SchematicContext, SchematicsException, Tree, url } from '@angular-devkit/schematics';
 import * as nodePath from 'path';
+import { Schema as Options } from './schema';
 
-const supportedTypes = ['component', 'directive', 'guard', 'service', 'pipe', 'module'];
+const supportedTypes = ['component', 'directive', 'guard', 'service', 'pipe'];
 
 export function getWorkspacePath(host: Tree): string {
-  const possibleFiles = [ '/angular.json', '/.angular.json' ];
+  const possibleFiles = ['/angular.json', '/.angular.json'];
   const path = possibleFiles.filter(path => host.exists(path))[0];
 
   return path;
@@ -80,9 +68,9 @@ export default function (options: Options): Rule {
     }
 
     if (!supportedTypes.includes(type)) {
-      const ex = `The type "${ type }" is not supported. Please use one of [${
+      const ex = `The type "${type}" is not supported. Please use one of [${
         supportedTypes.join(', ')
-      }].`;
+        }].`;
 
       throw new SchematicsException(ex);
     }
@@ -96,8 +84,8 @@ export default function (options: Options): Rule {
     const relativeSchematicsPath = nodePath.relative(__dirname, schematicsPath);
 
     const templateSource = apply(url(relativeSchematicsPath), [
-      filter(path => path.endsWith('.spec.ts')),
-      template({
+      filter(path => path.endsWith('.spec.ts.template')),
+      applyTemplates({
         ...strings,
         'if-flat': () => '',
         ...options,

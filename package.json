@@ -20,12 +20,12 @@
   "license": "MIT",
   "schematics": "./src/collection.json",
   "dependencies": {
-    "@angular-devkit/core": "^0.7.0-beta.1",
-    "@angular-devkit/schematics": "^0.7.0-beta.1",
-    "@schematics/angular": ">=0.7.0-beta.1",
-    "@types/jasmine": "^2.6.0",
-    "@types/node": "^8.0.31",
+    "@angular-devkit/core": "^7.3.3",
+    "@angular-devkit/schematics": "^7.3.3",
+    "@schematics/angular": "^7.3.3",
+    "@types/jasmine": "^2.8.16",
+    "@types/node": "^8.10.40",
     "jasmine": "^2.8.0",
-    "typescript": "^2.5.2"
+    "typescript": "^2.9.2"
   }
 }

@@ -8,12 +8,15 @@ A missing schematic for creating Angular spec.
 npm i -D ngx-spec
 ```
 
+* version 2.* for Angular 7
+* version 1.* for Angular 6
+
 ## Usage
 
 Supported types are
 
 ```ts
-const supportedTypes = ['component', 'directive', 'guard', 'service', 'pipe', 'module'];
+const supportedTypes = ['component', 'directive', 'guard', 'service', 'pipe'];
 ```
 
 Run:

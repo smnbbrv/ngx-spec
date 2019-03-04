@@ -5,6 +5,11 @@
       "description": "Creates a spec",
       "factory": "./spec/index",
       "schema": "./spec/schema.json"
+    },
+    "specs": {
+      "description": "Creates spec files for each matching file by a provided GLOB",
+      "factory": "./specs/index",
+      "schema": "./specs/schema.json"
     }
   }
 }

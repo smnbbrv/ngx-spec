@@ -3,7 +3,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const core_1 = require("@angular-devkit/core");
 const schematics_1 = require("@angular-devkit/schematics");
 const nodePath = require("path");
-const supportedTypes = ['component', 'directive', 'guard', 'service', 'pipe'];
+const supported_types_1 = require("../utils/supported-types");
 function getWorkspacePath(host) {
     const possibleFiles = ['/angular.json', '/.angular.json'];
     const path = possibleFiles.filter(path => host.exists(path))[0];
@@ -49,8 +49,8 @@ function default_1(options) {
             throw new schematics_1.SchematicsException('The provided name / file should look like name.type (e.g. component-name.component)'
                 + ' or name.type.ts (e.g. component-name.component.ts).');
         }
-        if (!supportedTypes.includes(type)) {
-            const ex = `The type "${type}" is not supported. Please use one of [${supportedTypes.join(', ')}].`;
+        if (!supported_types_1.SupportedTypes.includes(type)) {
+            const ex = `The type "${type}" is not supported. Please use one of [${supported_types_1.SupportedTypes.join(', ')}].`;
             throw new schematics_1.SchematicsException(ex);
         }
         options.name = name;

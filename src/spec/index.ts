@@ -2,9 +2,8 @@ import { basename, dirname, normalize, Path, strings } from '@angular-devkit/cor
 import { WorkspaceSchema } from '@angular-devkit/core/src/workspace';
 import { apply, applyTemplates, filter, mergeWith, move, Rule, SchematicContext, SchematicsException, Tree, url } from '@angular-devkit/schematics';
 import * as nodePath from 'path';
+import { SupportedTypes } from '../utils/supported-types';
 import { Schema as Options } from './schema';
-
-const supportedTypes = ['component', 'directive', 'guard', 'service', 'pipe'];
 
 export function getWorkspacePath(host: Tree): string {
   const possibleFiles = ['/angular.json', '/.angular.json'];
@@ -67,9 +66,9 @@ export default function (options: Options): Rule {
       );
     }
 
-    if (!supportedTypes.includes(type)) {
+    if (!SupportedTypes.includes(type)) {
       const ex = `The type "${type}" is not supported. Please use one of [${
-        supportedTypes.join(', ')
+        SupportedTypes.join(', ')
         }].`;
 
       throw new SchematicsException(ex);
@@ -80,10 +79,10 @@ export default function (options: Options): Rule {
 
     const schematicsPath = require.resolve(`@schematics/angular/${type}/index.js`).replace(/index\.js$/, 'files');
 
-    const targetPath = `${ parsedPath.path }/${ name }.${ type }.ts`;
+    const targetPath = `${parsedPath.path}/${name}.${type}.ts`;
 
     if (!host.exists(targetPath) && !options.ignoreTargetNotFound) {
-      throw new SchematicsException(`Target file ${ targetPath } is not existing`);
+      throw new SchematicsException(`Target file ${targetPath} is not existing`);
     }
 
     // important for windows to get the relative path, otherwise schematics becomes crazy when sees C:\bla\bla things

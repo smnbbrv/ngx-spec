@@ -11,15 +11,17 @@ npm i -D ngx-spec
 ```
 
 * version 2.* for Angular 7
-* version 1.* for Angular 6
+* version 1.* for Angular 6 (no `specs` support)
 
-## Usage
+## Supported types
 
 Supported types are
 
 ```ts
-const supportedTypes = ['component', 'directive', 'guard', 'service', 'pipe'];
+const SupportedTypes = ['component', 'directive', 'guard', 'service', 'pipe'];
 ```
+
+## ng g ngx:spec
 
 Run:
 
@@ -34,6 +36,26 @@ ng g ngx-spec:spec path/my.service.ts
 ```
 
 > Please note that in a standard Angular CLI project the path will start at `src/app`. That's why if you use the file paths then it would be comfortable to `cd src/app` first and then safely use the shell autocompletion to produce the proper path.
+
+## ng g ngx-spec:specs
+
+Batch specs generator. Supports [minimatch](https://github.com/isaacs/minimatch) globs. Does not override existing spec files.
+
+Examples:
+
+```sh
+ng g ngx-spec:spec path/*.service.ts
+```
+
+```sh
+ng g ngx-spec:spec **/*.service.ts
+```
+
+```sh
+ng g ngx-spec:spec **/*
+```
+
+etc.
 
 ## Usage in Visual Studio Code
 

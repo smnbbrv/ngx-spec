@@ -59,6 +59,8 @@ ng g ngx-spec:specs '**/*'
 
 etc. 
 
+> Please note that in a standard Angular CLI project the path will start at `src/app`. That's why if you use the file paths then it would be comfortable to `cd src/app` first and then safely use the shell autocompletion to produce the proper path.
+
 ## Usage in Visual Studio Code
 
 It could be easier to use the schematic with [vscode-angular-schematics extension](https://github.com/cyrilletuzi/vscode-angular-schematics) in Visual Studio Code.

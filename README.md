@@ -41,21 +41,23 @@ ng g ngx-spec:spec path/my.service.ts
 
 Batch specs generator. Supports [minimatch](https://github.com/isaacs/minimatch) globs. Does not override existing spec files.
 
+**Important:** the glob should be passed as a string, otherwise OS tries to intercept it with *its* glob.
+
 Examples:
 
 ```sh
-ng g ngx-spec:spec path/*.service.ts
+ng g ngx-spec:spec 'path/*.service.ts'
 ```
 
 ```sh
-ng g ngx-spec:spec **/*.service.ts
+ng g ngx-spec:spec '**/*.service.ts'
 ```
 
 ```sh
-ng g ngx-spec:spec **/*
+ng g ngx-spec:spec '**/*'
 ```
 
-etc.
+etc. 
 
 ## Usage in Visual Studio Code
 

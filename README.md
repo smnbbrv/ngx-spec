@@ -6,12 +6,17 @@ Works only from @angular/cli@^6.0.0 on.
 
 ## Installation
 
+Angular 7:
+
 ```sh
-npm i -D ngx-spec
+npm i -D ngx-spec@^2.0.0
 ```
 
-* version 2.* for Angular 7
-* version 1.* for Angular 6 (only `spec`, no `specs` support)
+Angular 6 (only `spec`, no `specs` support):
+
+```sh
+npm i -D ngx-spec@^1.0.0
+```
 
 ## Supported types
 

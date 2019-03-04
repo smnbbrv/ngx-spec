@@ -1,6 +1,6 @@
 {
   "name": "ngx-spec",
-  "version": "2.1.2",
+  "version": "2.1.3",
   "description": "A missing schematics for creating missing / recreating Angular 6+ specs",
   "scripts": {
     "build": "tsc -p tsconfig.json",

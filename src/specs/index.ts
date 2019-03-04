@@ -39,41 +39,45 @@ export default function (options: Options): Rule {
       options.path = `/${project.root}/src/${projectDirName}`;
     }
 
-    const glob = normalize(options.path + '/' + options.name);
+    let glob = normalize((options.path.startsWith('/') ? '' : '/') + options.path + '/' + options.name);
+
     const templateSources: Source[] = [];
 
-    host.getDir('.').visit(file => {
-      const fdesc = describeFile(file);
+    // limit folders to look up
+    ['src', 'projects'].forEach(dir => {
+      host.getDir(dir).visit(file => {
+        const fdesc = describeFile(file);
 
-      if (fdesc && minimatch(file, glob) && fdesc.supported) {
-        const spec = normalize(`${fdesc.path}/${fdesc.name}.${fdesc.type}.spec.ts`);
+        if (fdesc && minimatch(file, glob) && fdesc.supported) {
+          const spec = normalize(`${fdesc.path}/${fdesc.name}.${fdesc.type}.spec.ts`);
 
-        if (host.exists(spec)) {
-          console.log(`Skipped ${file}: spec already exists`);
-        } else {
-          // important for windows to get the relative path, otherwise schematics becomes crazy when sees C:\bla\bla things
-          const relativeSchematicsPath = nodePath.relative(__dirname, getStandardSchematicPath(fdesc.type));
+          if (host.exists(spec)) {
+            console.log(`Skipped ${file}: spec already exists`);
+          } else {
+            // important for windows to get the relative path, otherwise schematics becomes crazy when sees C:\bla\bla things
+            const relativeSchematicsPath = nodePath.relative(__dirname, getStandardSchematicPath(fdesc.type));
 
-          options.name = fdesc.name;
-          options.path = fdesc.path;
+            options.name = fdesc.name;
+            options.path = fdesc.path;
 
-          templateSources.push(
-            apply(
-              url(relativeSchematicsPath),
-              [
-                filter(path => path.endsWith('.spec.ts.template')),
-                applyTemplates({
-                  ...strings,
-                  'if-flat': () => '',
-                  ...options,
-                }),
-                move(fdesc.path),
-              ]
-            )
-          );
+            templateSources.push(
+              apply(
+                url(relativeSchematicsPath),
+                [
+                  filter(path => path.endsWith('.spec.ts.template')),
+                  applyTemplates({
+                    ...strings,
+                    'if-flat': () => '',
+                    ...options,
+                  }),
+                  move(fdesc.path),
+                ]
+              )
+            );
+          }
         }
-      }
-    });
+      });
+    })
 
     return chain(templateSources.map(ts => mergeWith(ts)))(host, context);
   };

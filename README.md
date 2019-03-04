@@ -11,7 +11,7 @@ npm i -D ngx-spec
 ```
 
 * version 2.* for Angular 7
-* version 1.* for Angular 6 (no `specs` support)
+* version 1.* for Angular 6 (only `spec`, no `specs` support)
 
 ## Supported types
 

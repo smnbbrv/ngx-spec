@@ -46,15 +46,15 @@ Batch specs generator. Supports [minimatch](https://github.com/isaacs/minimatch)
 Examples:
 
 ```sh
-ng g ngx-spec:spec 'path/*.service.ts'
+ng g ngx-spec:specs 'path/*.service.ts'
 ```
 
 ```sh
-ng g ngx-spec:spec '**/*.service.ts'
+ng g ngx-spec:specs '**/*.service.ts'
 ```
 
 ```sh
-ng g ngx-spec:spec '**/*'
+ng g ngx-spec:specs '**/*'
 ```
 
 etc. 

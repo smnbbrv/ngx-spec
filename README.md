@@ -6,7 +6,7 @@ Works only from @angular/cli@^6.0.0 on.
 
 ## Installation
 
-Angular 7:
+Angular 7+:
 
 ```sh
 npm i -D ngx-spec@^2.0.0

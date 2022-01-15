@@ -47,6 +47,7 @@ function default_1(options) {
                         // important for windows to get the relative path, otherwise schematics becomes crazy when sees C:\bla\bla things
                         const relativeSchematicsPath = nodePath.relative(__dirname, utils_1.getStandardSchematicPath(fdesc.type));
                         options.name = fdesc.name;
+                        options.type = fdesc.type;
                         options.path = fdesc.path;
                         templateSources.push(schematics_1.apply(schematics_1.url(relativeSchematicsPath), [
                             schematics_1.filter(path => path.endsWith('.spec.ts.template')),

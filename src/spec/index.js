@@ -54,6 +54,7 @@ function default_1(options) {
             throw new schematics_1.SchematicsException(ex);
         }
         options.name = name;
+		options.type = type;
         options.path = parsedPath.path;
         const schematicsPath = require.resolve(`@schematics/angular/${type}/index.js`).replace(/index\.js$/, 'files');
         const targetPath = `${parsedPath.path}/${name}.${type}.ts`;

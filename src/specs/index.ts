@@ -58,6 +58,7 @@ export default function (options: Options): Rule {
             const relativeSchematicsPath = nodePath.relative(__dirname, getStandardSchematicPath(fdesc.type));
 
             options.name = fdesc.name;
+            options.type = fdesc.type;
             options.path = fdesc.path;
 
             templateSources.push(

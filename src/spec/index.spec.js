@@ -29,7 +29,7 @@ describe('Spec Schematic', () => {
         appTree = schematicRunner.runSchematic('application', appOptions, appTree);
     });
     function testCreatedSpec(schematic, targetOptions) {
-        const options = Object.assign({}, defaultOptions, { name: 'foo/foo.' + schematic });
+        const options = Object.assign(Object.assign({}, defaultOptions), { name: 'foo/foo.' + schematic });
         let tree = schematicRunner.runSchematic(schematic, targetOptions, appTree);
         expect(tree.files.includes(`/projects/bar/src/app/foo/foo.${schematic}.spec.ts`)).toBeFalsy();
         expect(tree.files.includes(`/projects/bar/src/app/foo/foo.${schematic}.ts`)).toBeTruthy();
@@ -87,29 +87,29 @@ describe('Spec Schematic', () => {
     });
     it('should throw for not allowed types', () => {
         expect(() => {
-            thisSchematicRunner.runSchematic('spec', Object.assign({}, defaultOptions, { name: 'foo/foo' }), appTree);
+            thisSchematicRunner.runSchematic('spec', Object.assign(Object.assign({}, defaultOptions), { name: 'foo/foo' }), appTree);
         }).toThrow();
         expect(() => {
-            thisSchematicRunner.runSchematic('spec', Object.assign({}, defaultOptions, { name: 'foo/service' }), appTree);
+            thisSchematicRunner.runSchematic('spec', Object.assign(Object.assign({}, defaultOptions), { name: 'foo/service' }), appTree);
         }).toThrow();
         expect(() => {
-            thisSchematicRunner.runSchematic('spec', Object.assign({}, defaultOptions, { name: 'foo/foo.abc' }), appTree);
+            thisSchematicRunner.runSchematic('spec', Object.assign(Object.assign({}, defaultOptions), { name: 'foo/foo.abc' }), appTree);
         }).toThrow();
     });
     it('should throw when target file is not found', () => {
         expect(() => {
-            thisSchematicRunner.runSchematic('spec', Object.assign({}, defaultOptions, { name: 'foo/foo.service' }), appTree);
+            thisSchematicRunner.runSchematic('spec', Object.assign(Object.assign({}, defaultOptions), { name: 'foo/foo.service' }), appTree);
         }).toThrow();
         expect(() => {
-            thisSchematicRunner.runSchematic('spec', Object.assign({}, defaultOptions, { name: 'foo/foo.service.ts' }), appTree);
+            thisSchematicRunner.runSchematic('spec', Object.assign(Object.assign({}, defaultOptions), { name: 'foo/foo.service.ts' }), appTree);
         }).toThrow();
     });
     it('should throw when target file is not found and ignoreTargetNotFound is true', () => {
         expect(() => {
-            thisSchematicRunner.runSchematic('spec', Object.assign({}, defaultOptions, { name: 'foo/foo.service', ignoreTargetNotFound: true }), appTree);
+            thisSchematicRunner.runSchematic('spec', Object.assign(Object.assign({}, defaultOptions), { name: 'foo/foo.service', ignoreTargetNotFound: true }), appTree);
         }).not.toThrow();
         expect(() => {
-            thisSchematicRunner.runSchematic('spec', Object.assign({}, defaultOptions, { name: 'foo/foo.service.ts', ignoreTargetNotFound: true }), appTree);
+            thisSchematicRunner.runSchematic('spec', Object.assign(Object.assign({}, defaultOptions), { name: 'foo/foo.service.ts', ignoreTargetNotFound: true }), appTree);
         }).not.toThrow();
     });
 });

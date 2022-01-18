@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.getStandardSchematicPath = exports.describeFile = void 0;
 const supported_types_1 = require("./supported-types");
 function describeFile(fullPath) {
     const [, name, type] = (fullPath.replace(/\.ts$/, '').match(/(.*)\.([^.]+)$/) || [null, null, null]);

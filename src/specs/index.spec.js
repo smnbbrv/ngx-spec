@@ -89,7 +89,7 @@ describe('Spec Schematic', () => {
             expect(tree.files.includes(`/projects/bar/src/app/foo/foo.${schematic}.spec.ts`)).toBeFalsy();
             expect(tree.files.includes(`/projects/bar/src/app/foo/foo.${schematic}.ts`)).toBeTruthy();
         });
-        const options = Object.assign({}, defaultOptions, { name: '**/*.ts' });
+        const options = Object.assign(Object.assign({}, defaultOptions), { name: '**/*.ts' });
         tree = thisSchematicRunner.runSchematic('specs', options, tree);
         function fileExists(filePath) {
             return tree.files.includes(`/projects/bar/src/app/${filePath}`);
@@ -107,7 +107,7 @@ describe('Spec Schematic', () => {
             expect(tree.files.includes(`/projects/bar/src/app/foo/foo.${schematic}.spec.ts`)).toBeFalsy();
             expect(tree.files.includes(`/projects/bar/src/app/foo/foo.${schematic}.ts`)).toBeTruthy();
         });
-        const options = Object.assign({}, defaultOptions, { name: 'foo/bar/foo/*.ts' });
+        const options = Object.assign(Object.assign({}, defaultOptions), { name: 'foo/bar/foo/*.ts' });
         tree = thisSchematicRunner.runSchematic('specs', options, tree);
         function fileExists(filePath) {
             return tree.files.includes(`/projects/bar/src/app/${filePath}`);

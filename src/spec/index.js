@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.getWorkspace = exports.getWorkspacePath = void 0;
 const core_1 = require("@angular-devkit/core");
 const schematics_1 = require("@angular-devkit/schematics");
 const nodePath = require("path");
@@ -21,11 +22,11 @@ function getWorkspace(host) {
 }
 exports.getWorkspace = getWorkspace;
 function parseName(path, name) {
-    const nameWithoutPath = core_1.basename(name);
-    const namePath = core_1.dirname((path + '/' + name));
+    const nameWithoutPath = (0, core_1.basename)(name);
+    const namePath = (0, core_1.dirname)((path + '/' + name));
     return {
         name: nameWithoutPath,
-        path: core_1.normalize('/' + namePath),
+        path: (0, core_1.normalize)('/' + namePath),
     };
 }
 function default_1(options) {
@@ -54,7 +55,7 @@ function default_1(options) {
             throw new schematics_1.SchematicsException(ex);
         }
         options.name = name;
-		options.type = type;
+        options.type = type;
         options.path = parsedPath.path;
         const schematicsPath = require.resolve(`@schematics/angular/${type}/index.js`).replace(/index\.js$/, 'files');
         const targetPath = `${parsedPath.path}/${name}.${type}.ts`;
@@ -63,12 +64,12 @@ function default_1(options) {
         }
         // important for windows to get the relative path, otherwise schematics becomes crazy when sees C:\bla\bla things
         const relativeSchematicsPath = nodePath.relative(__dirname, schematicsPath);
-        const templateSource = schematics_1.apply(schematics_1.url(relativeSchematicsPath), [
-            schematics_1.filter(path => path.endsWith('.spec.ts.template')),
-            schematics_1.applyTemplates(Object.assign({}, core_1.strings, { 'if-flat': () => '' }, options)),
-            schematics_1.move(parsedPath.path),
+        const templateSource = (0, schematics_1.apply)((0, schematics_1.url)(relativeSchematicsPath), [
+            (0, schematics_1.filter)(path => path.endsWith('.spec.ts.template')),
+            (0, schematics_1.applyTemplates)(Object.assign(Object.assign(Object.assign({}, core_1.strings), { 'if-flat': () => '' }), options)),
+            (0, schematics_1.move)(parsedPath.path),
         ]);
-        return schematics_1.mergeWith(templateSource)(host, context);
+        return (0, schematics_1.mergeWith)(templateSource)(host, context);
     };
 }
 exports.default = default_1;

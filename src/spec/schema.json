@@ -15,6 +15,9 @@
     "path": {
       "type": "string",
       "format": "path",
+      "$default": {
+        "$source": "workingDirectory"
+       },
       "description": "The path to create the spec.",
       "visible": false
     },

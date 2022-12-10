@@ -12,6 +12,12 @@
         "index": 0
       }
     },
+    "standalone": {
+      "description": "Whether the generated component is standalone.",
+      "type": "boolean",
+      "default": false,
+      "x-user-analytics": 15
+    },
     "path": {
       "type": "string",
       "format": "path",
